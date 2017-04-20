@@ -30,6 +30,11 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      my_target: {
+        files: {
+          'public/dist/output.min.js': ['public/dist/build.js']
+        }
+      }
     },
 
     eslint: {
@@ -39,6 +44,15 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      options: {
+        mergeIntoShorthands: false,
+        roundingPrecision: -1
+      },
+      target: {
+        files: {
+          'public/dist/style.min.css': ['public/style.css']
+        }
+      }
     },
 
     watch: {
@@ -85,8 +99,8 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('build', [ 'concat', 'uglify', 'cssmin' ]
+  );
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
@@ -98,6 +112,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+
   ]);
 
 
