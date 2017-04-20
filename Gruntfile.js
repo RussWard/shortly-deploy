@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+
+  // cd here in the ssh    /var/www/192.241.233.241:4568
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
