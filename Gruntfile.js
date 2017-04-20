@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
-
+  // great comment
+  // another comment
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
