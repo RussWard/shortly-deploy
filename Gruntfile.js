@@ -38,10 +38,12 @@ module.exports = function(grunt) {
     },
 
     eslint: {
-      target: [
-        // Add list of files to lint here
-      ]
-    },
+  		options: {
+  			configFile: 'conf/eslint.json',
+  			rulePaths: ['conf/rules']
+  		},
+  		target: ['/public/client/dist/output.min.js']
+  	},
 
     cssmin: {
       options: {
@@ -110,10 +112,8 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // add your deploy tasks here
-
-  ]);
+  grunt.registerTask('deploy', [ 'eslint' ]
+  );
 
 
 };
