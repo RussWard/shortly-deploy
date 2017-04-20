@@ -105,9 +105,12 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
       // add your production server task here
-    } else {
-      grunt.task.run([ 'server-dev' ]);
+      command: 'ls -la'
     }
+
+    // } else {
+    //   grunt.task.run([ 'server-dev' ]);
+    // }
   });
 
   grunt.registerTask('deploy', [ 'eslint', 'build', 'test', 'nodemon' ]
