@@ -39,10 +39,10 @@ module.exports = function(grunt) {
 
     eslint: {
   		options: {
-  			configFile: 'conf/eslint.json',
-  			rulePaths: ['conf/rules']
+  			configFile: 'node_modules/eslint-config-hackreactor/index.js',
+  			rulePaths: ['node_modules/eslint/lib/rules']
   		},
-  		target: ['/public/client/dist/output.min.js']
+  		target: ['public/client/**/*.js']
   	},
 
     cssmin: {
@@ -64,8 +64,7 @@ module.exports = function(grunt) {
           'public/lib/**/*.js',
         ],
         tasks: [
-          'concat',
-          'uglify'
+          'deploy'
         ]
       },
       css: {
@@ -90,16 +89,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
 
   grunt.registerTask('server-dev', function (target) {
-    grunt.task.run([ 'nodemon', 'watch' ]);
+    grunt.task.run([ 'watch' ]);
   });
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', [
-    'mochaTest'
-  ]);
+  grunt.registerTask('test', [ 'mochaTest' ]
+  );
 
   grunt.registerTask('build', [ 'concat', 'uglify', 'cssmin' ]
   );
@@ -112,7 +110,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [ 'eslint' ]
+  grunt.registerTask('deploy', [ 'eslint', 'build', 'test', 'nodemon' ]
   );
 
 
